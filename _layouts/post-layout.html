@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+{% include body-header.html %}
+
+<article>
+    <h2>{{ page.title }}</h2>
+    <div class="taglist">
+    {% for tag in page.tags %}
+        <a class="tag" href="/tags/#{{ tag }}">{{ tag }}</a>
+        {% unless forloop.last %}
+        &nbsp;|&nbsp;
+        {% endunless %}
+    {% endfor %}
+    </div>
+    <span class="smalltext">{{ page.date | date: "%d %b, %Y" }}</span>
+
+    <hr>
+    {{ content }}
+    <hr>
+</article>
+
+{% include body-footer.html %}

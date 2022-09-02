@@ -1,0 +1,152 @@
+
+/* page layout */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-sizing: border-box;
+    max-width: 40rem;
+
+    margin: 1rem auto;
+
+    font-size: 16px;
+    font-family: "Georgia", serif;
+    color: #3f3f3f;
+    background-color: #ffffff;
+}
+
+header, footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.flex-left {
+    align-self: flex-start;
+}
+
+.flex-right {
+    align-self: flex-end;
+}
+
+article {
+    display: block;
+
+    width: 100%;
+}
+
+
+
+/* formatting */
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-top: 0.5px dashed #0c76ac;
+}
+
+
+
+h1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h2 {
+    margin-top: 2rem;
+    margin-bottom: 0;
+
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0c76ac;
+}
+
+h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+a, a:visited {
+    color: #3f3f3f;
+}
+a:hover, a:active {
+    color: #0c76ac;
+}
+
+
+
+ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0;
+
+    list-style-type: none;
+}
+
+
+
+.datelist {
+    margin-right: 1rem;
+    opacity: 0.8;
+}
+
+.smalltext {
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+.bigtext {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.bigmargin {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+
+
+/* header formatting */
+
+a.title, a.title:hover {
+    color: #3f3f3f;
+    text-decoration: none;
+}
+
+
+
+/* header tag list formatting */
+
+.taglist {
+    margin-top: 0.4rem;
+    margin-bottom: 1rem;
+
+    font-size: 0.8rem;
+    color: #0c76ac;
+}
+
+a.tag {
+    font-size: 0.8rem;
+    color: #0c76ac;
+    text-decoration: none;
+}
+a.tag:hover {
+    text-decoration: underline;
+}
