@@ -11,7 +11,7 @@
 
     let link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/svg-figure.css";
+    link.href = "/css/svg-figure.css";
     svg.appendChild(link);
 
     let script = document.currentScript;
