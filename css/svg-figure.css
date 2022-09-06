@@ -1,0 +1,114 @@
+
+/* layout */
+
+svg {
+    display: block;
+
+    margin: 1rem auto;
+}
+
+
+
+/* grid */
+
+.grid-major {
+    stroke: #3f3f3f;
+    stroke-width: 1;
+    fill: none;
+}
+
+.grid-minor {
+    stroke: #7f7f7f;
+    stroke-width: 0.5;
+    fill: none;
+}
+
+.grid-label {
+    font-family: "Georgia", serif;
+    font-size: 0.8rem;
+    color: #3f3f3f;
+    opacity: 0.6;
+    user-select: none;
+}
+
+.grid-label-horizontal-axis {
+    text-anchor: middle;
+    alignment-baseline: top;
+}
+
+.grid-label-vertical-axis {
+    text-anchor: end;
+    alignment-baseline: middle;
+}
+
+.grid-label-mask {
+    stroke: none;
+    fill: #ffffff;
+}
+
+
+
+/* shapes */
+
+.polyline-1 {
+    stroke: #0c76ac;
+    stroke-width: 2;
+    fill: none;
+}
+
+.polyline-2 {
+    stroke: #920cac;
+    stroke-width: 2;
+    fill: none;
+}
+
+.polyline-3 {
+    stroke: #ac420c;
+    stroke-width: 2;
+    fill: none;
+}
+
+.polyline-4 {
+    stroke: #26ac0c;
+    stroke-width: 2;
+    fill: none;
+}
+
+.polygon-1 {
+    stroke: #0c76ac;
+    stroke-width: 2;
+    fill: #74caf5;
+}
+
+.polygon-2 {
+    stroke: #920cac;
+    stroke-width: 2;
+    fill: #e074f5;
+}
+
+.polygon-3 {
+    stroke: #ac420c;
+    stroke-width: 2;
+    fill: #f59f74;
+}
+
+.polygon-4 {
+    stroke: #26ac0c;
+    stroke-width: 2;
+    fill: #89f574;
+}
+
+
+
+/* control points */
+
+.control {
+    stroke: #0c76ac;
+    stroke-width: 2.5;
+    fill: #74caf5;
+}
+
+.control-hover {
+    stroke: #920cac;
+    fill: #e074f5;
+}
