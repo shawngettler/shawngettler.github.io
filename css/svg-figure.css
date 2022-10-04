@@ -74,6 +74,14 @@ svg {
     fill: none;
 }
 
+.polyline-dash {
+    stroke-dasharray: 10 10;
+}
+
+.polyline-dot {
+    stroke-dasharray: 2 2;
+}
+
 .polygon-1 {
     stroke: #0c76ac;
     stroke-width: 2;
