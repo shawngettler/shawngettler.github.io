@@ -1,6 +1,7 @@
 /**
- * Interactive figure of a perspective view mapped onto a rectangular lat/lon
- * projection. The viewport adjusts shape based on the view center.
+ * Interactive figure of an approximated perspective view mapped onto a
+ * rectangular lat/lon projection. The viewport adjusts shape based on the view
+ * center.
  */
 (() => {
 
@@ -38,7 +39,7 @@
         grid.appendChild(line);
     }
 
-    let lblvals = ["-\u03c0", "-\u03c0/2", "0", "\u03c0/2", "\u03c0"]
+    let lblvals = ["-512", "-256", "0", "256", "512"]
     for(let i = -2; i <= 2; i++) {
         let mask = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         mask.setAttribute("x", x0+i*128-16);
@@ -93,19 +94,34 @@
         vpline[i].classList.add("polyline-1");
         vpbox.appendChild(vpline[i]);
     }
+    let refline = [];
+    for(let i = 0; i < 6; i++) {
+        refline[i] = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+        refline[i].classList.add("polyline-1");
+        refline[i].classList.add("polyline-dash");
+        vpbox.appendChild(refline[i]);
+    }
 
     function vpdraw(th0, ph0) {
         const vppos = (xn, yn, ph0, th0) => {
-            let th = Math.atan(xn/(0.875*(Math.cos(ph0)-yn*Math.sin(ph0)))) + th0;
-            let ph = Math.atan((Math.sin(ph0)+yn*Math.cos(ph0))/(Math.cos(ph0)-yn*Math.sin(ph0))/Math.sqrt(Math.pow(xn/(0.875*(Math.cos(ph0)-yn*Math.sin(ph0))), 2)+1));
-            return { x: th, y: ph };
+            let a = 0.875*(Math.cos(ph0) - yn*Math.sin(ph0));
+            let b = 0.875*(Math.sin(ph0) + yn*Math.cos(ph0));
+            let k1 = 1/(2*Math.PI) * ((1+a*a)*Math.atan(1/a) - a);
+            let k2 = 1/(2*Math.PI) * (-2*Math.sqrt(b*b+a*a)*Math.atanh(b/Math.sqrt(b*b+a*a)/Math.sqrt(a*a+1)) + 2*Math.atan(b/Math.sqrt(a*a+1)) + 2*b*Math.asinh(1/a));
+
+            let ma = Math.floor(3/256*1024*k1 * 256);
+            let md = Math.floor((-1/2*1024*k2 + 1024*ph0/(2*Math.PI))/(-(yn-1)*224/2+128+1024*ph0/(2*Math.PI)) * 256);
+
+            let xb = ma*(xn*256/2) / 256 + 1024*th0/(2*Math.PI);
+            let yb = -md*(-(yn-1)*224/2+128+1024*ph0/(2*Math.PI)) / 256 + 1024*ph0/(2*Math.PI);
+            return { x: xb, y: yb };
         };
 
         for(let i = 0; i < 5; i++) {
             let pts = "";
             for(let s = -32; s <= 32; s++) {
                 let p = vppos(s/32, (i-2)/2, ph0, th0);
-                pts += (x0-512*p.x/2/Math.PI)+","+(y0+512*p.y/2/Math.PI)+" ";
+                pts += (x0-512*p.x/1024)+","+(y0+512*p.y/1024)+" ";
             }
             vpline[i].setAttribute("points", pts);
         }
@@ -113,9 +129,32 @@
             let pts = "";
             for(let s = -16; s <= 16; s++) {
                 let p = vppos((i-2)/2, s/16, ph0, th0);
-                pts += (x0-512*p.x/2/Math.PI)+","+(y0+512*p.y/2/Math.PI)+" ";
+                pts += (x0-512*p.x/1024)+","+(y0+512*p.y/1024)+" ";
             }
             vpline[i+5].setAttribute("points", pts);
+        }
+
+        const refpos = (xn, yn, ph0, th0) => {
+            let th = Math.atan(xn/(0.875*(Math.cos(ph0)-yn*Math.sin(ph0)))) + th0;
+            let ph = Math.atan((Math.sin(ph0)+yn*Math.cos(ph0))/(Math.cos(ph0)-yn*Math.sin(ph0))/Math.sqrt(Math.pow(xn/(0.875*(Math.cos(ph0)-yn*Math.sin(ph0))), 2)+1));
+            return { x: th, y: ph };
+        };
+
+        for(let i = 0; i < 3; i++) {
+            let pts = "";
+            for(let s = -32; s <= 32; s++) {
+                let p = refpos(s/32, i-1, ph0, th0);
+                pts += (x0-512*p.x/2/Math.PI)+","+(y0+512*p.y/2/Math.PI)+" ";
+            }
+            refline[i].setAttribute("points", pts);
+        }
+        for(let i = 0; i < 3; i++) {
+            let pts = "";
+            for(let s = -16; s <= 16; s++) {
+                let p = refpos(i-1, s/16, ph0, th0);
+                pts += (x0-512*p.x/2/Math.PI)+","+(y0+512*p.y/2/Math.PI)+" ";
+            }
+            refline[i+3].setAttribute("points", pts);
         }
     }
 
