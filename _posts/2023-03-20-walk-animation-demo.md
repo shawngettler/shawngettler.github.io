@@ -8,7 +8,7 @@ Some sprites I have been working on as an exercise. The goal was to create an an
 
 Use the arrow keys to move around.
 
-<script src="/js/scanline-skybox-near-plane.js">
+<script src="/js/walk-animation-demo-viewer.js">
 </script>
 
 The process was very low-tech. I just sketched each direction square on, then projected them to a 45-degree view angle. Using the sketches as a reference, I drew the pixels an dplayed with the highlight and shadow. Based on the static pose, I keyframed the steps of the walking animation and in-betweened them.
