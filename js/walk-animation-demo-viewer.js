@@ -39,14 +39,14 @@
     let ani = null;
     let ans = {
         henry_idle: {
-            png: "img/walk-animation-demo-idle.png",
+            png: "/img/walk-animation-demo-idle.png",
             nfr: 1,
             cfr: 0,
             lfr: 1,
             tic: 0
         },
         henry_walk: {
-            png: "img/walk-animation-demo-walk.png",
+            png: "/img/walk-animation-demo-walk.png",
             nfr: 8,
             cfr: 0,
             lfr: 5,
