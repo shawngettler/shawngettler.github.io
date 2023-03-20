@@ -18,6 +18,7 @@
     window.addEventListener("keydown", (e) => {
         let k = ink.indexOf(e.key);
         if(k != -1) {
+            e.preventDefault();
             inp[k] = true;
         }
     });
